@@ -6,9 +6,15 @@ import {
   FiInstagram,
   FiYoutube,
 } from "react-icons/fi";
-
+import { FaWhatsapp } from "react-icons/fa";
 
 const socials = [
+  {
+    name: "WhatsApp",
+    label: "Suivez-nous sur WhatsApp",
+    href: "https://wa.me/243824912430", // À remplacer par vos liens réels
+    icon: FaWhatsapp,
+  },
   {
     name: "Facebook",
     label: "Suivez-nous sur Facebook",
@@ -20,12 +26,6 @@ const socials = [
     label: "Suivez-nous sur Instagram",
     href: "https://instagram.com/votre_compte",
     icon: FiInstagram,
-  },
-  {
-    name: "LinkedIn",
-    label: "Suivez-nous sur LinkedIn",
-    href: "https://linkedin.com/company/votre_entreprise",
-    icon: FiLinkedin,
   },
   {
     name: "X (Twitter)",

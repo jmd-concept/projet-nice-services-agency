@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { Form, Input, Button, message } from "antd";
 import { motion } from "framer-motion";
+import SocialLinks from "./ui/SocialLinks";
+//ICONS
 import { FaEye } from "react-icons/fa";
 
 const { TextArea } = Input;
@@ -53,7 +55,7 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
   };
 
   return (
-    <div className="max-auto w-full lg:max-w-7xl mx-auto space-y-8">
+    <div className="max-auto w-full lg:max-w-7xl mx-auto space-y-8 py-16">
       {/* En-tête du Formulaire */}
       <div className="flex justify-center items-center pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
         <div className="text-center">
@@ -165,7 +167,7 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
           viewport={{ once: true }}
-          className="w-full max-w-xl h-full"
+          className="w-full max-w-xl h-full space-y-8"
         >
           <div className="bg-zinc-100 dark:bg-zinc-950 rounded-2xl p-2 border border-zinc-200/60 dark:border-zinc-900 shadow-inner grow overflow-hidden relative group">
             <iframe
@@ -190,7 +192,7 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
                     Notre Bureau
                   </p>
                   <p className="text-zinc-800 dark:text-zinc-200 font-medium text-xs sm:text-sm">
-                    Righini, Lemba, Kinshasa, RD Congo
+                    Kinshasa, RD Congo
                   </p>
                 </div>
                 <div className="bg-amber-500 p-2 rounded-lg text-white shadow-md shadow-amber-500/20">
@@ -198,6 +200,10 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
                 </div>
               </a>
             </div>
+          </div>
+
+          <div className="max-auto flex justify-center max-w-xl mt-4">
+            <SocialLinks />
           </div>
         </motion.div>
       </div>
