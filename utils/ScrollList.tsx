@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { FiChevronLeft, FiChevronRight, FiPlay, FiPause } from "react-icons/fi";
@@ -83,7 +83,7 @@ interface QuoteItem {
 }
 
 interface QuoteRotatorProps {
-    /** URL de l'API ou du fichier JSON contenant les citations */
+    /** URL de l'API ou du fichier JSON contenant les citations */ /*
     dataSource?: string;
 }
 
@@ -168,7 +168,7 @@ export function QuoteRotator({ dataSource }: QuoteRotatorProps) {
         >
             <div className="w-full py-8 md:py-12 flex flex-col items-stretch justify-center gap-6 box-border" aria-live="polite">
 
-                {/* Viewport de la Citation */}
+                {/* Viewport de la Citation */ /*}
                 <div className="min-h-[clamp(160px,28vh,320px)] flex flex-col justify-center items-stretch text-left w-full">
                     <blockquote
                         className={`m-0 w-full border-l-4 border-sky-500 pl-4 font-serif text-[clamp(1.6rem,2vw+1rem,2.6rem)] font-semibold leading-[1.35] transition-all duration-500 ease-out ${isFading ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
@@ -179,7 +179,6 @@ export function QuoteRotator({ dataSource }: QuoteRotatorProps) {
                         </q>
                     </blockquote>
 
-                    {/* Source & Auteur */}
                     <div
                         className={`mt-4 pl-4 font-sans italic text-[clamp(0.95rem,0.4vw+0.85rem,1.05rem)] color text-zinc-400 overflow-wrap-anywhere break-words transition-all duration-500 ease-out delay-75 ${isFading ? "opacity-0 -translate-y-2" : "opacity-100 translate-y-0"
                             }`}
@@ -204,7 +203,6 @@ export function QuoteRotator({ dataSource }: QuoteRotatorProps) {
                     </div>
                 </div>
 
-                {/* Boutons de contrôle */}
                 <div className="inline-flex items-center justify-center gap-3 mt-6 flex-wrap" role="group" aria-label="Quote controls">
                     <button
                         onClick={handlePrev}
@@ -345,16 +343,15 @@ export function FeatureSlider() {
     return (
         <div className="relative min-h-screen w-full bg-neutral-950 text-white flex flex-col items-center justify-center p-4 antialiased selection:bg-pink-500/30 selection:text-pink-200">
 
-            {/* Background Grid Pattern standardisé en pur CSS/Tailwind */}
+            {/* Background Grid Pattern standardisé en pur CSS/Tailwind */ /*}
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:45px_45px] [mask-image:linear-gradient(-20deg,transparent_40%,white)] pointer-events-none" />
 
-            {/* Section Conteneur principale */}
             <section
                 data-checking-details={hasCheckedDetails}
                 className="relative w-full max-w-[800px] aspect-[4/3] min-h-[500px] flex items-center justify-start gap-4 rounded-2xl bg-black border border-white/10 overflow-hidden group"
             >
 
-                {/* Colonne Accordéons (Gauche) */}
+                {/* Colonne Accordéons (Gauche) */ /*}
                 <div className="pl-16 grid auto-rows-auto w-[300px] items-center justify-items-start gap-2 z-20 flex-initial">
                     {features.map((feature, idx) => {
                         const isOpen = openIndex === idx;
@@ -367,7 +364,7 @@ export function FeatureSlider() {
                                     interpolateSize: 'allow-keywords', // Propriété d'animation moderne supportée nativement
                                 } as React.CSSProperties}
                             >
-                                {/* En-tête (Summary alternatif) */}
+                                {/* En-tête (Summary alternatif) */ /*}
                                 <button
                                     onClick={() => handleToggle(idx)}
                                     className={`w-full text-left inline-flex gap-2 items-center px-6 rounded-[28px] h-11 min-h-[56px] cursor-pointer whitespace-nowrap font-semibold transition-all duration-500 ease-[var(--bounce)] ${isOpen ? 'opacity-0 pointer-events-none w-[300px]' : 'w-auto'
@@ -377,7 +374,7 @@ export function FeatureSlider() {
                                     <span>{feature.title}</span>
                                 </button>
 
-                                {/* Contenu expansible contrôlé par l'état */}
+                                {/* Contenu expansible contrôlé par l'état */ /*}
                                 <div
                                     className={`transition-all duration-500 overflow-hidden ease-[var(--bounce)] ${isOpen
                                         ? 'h-auto opacity-100 mt-[-56px] w-[300px]'
@@ -393,10 +390,9 @@ export function FeatureSlider() {
                     })}
                 </div>
 
-                {/* Colonne Images (Droite / Arrière-plan) */}
+                {/* Colonne Images (Droite / Arrière-plan) */ /*}
                 <div className="absolute inset-0 w-full h-full pointer-events-none z-10">
 
-                    {/* Image par défaut (Visible uniquement si rien n'est ouvert) */}
                     <div className={`absolute inset-0 transition-all duration-500 ${openIndex === null ? 'opacity-100 scale-100' : 'opacity-0 scale-125'}`}>
                         <img
                             src={defaultImg}
@@ -405,7 +401,7 @@ export function FeatureSlider() {
                         />
                     </div>
 
-                    {/* Images dynamiques associées aux fonctionnalités */}
+                    {/* Images dynamiques associées aux fonctionnalités */ /*}
                     {features.map((feature, idx) => {
                         const isOpen = openIndex === idx;
 
@@ -438,10 +434,9 @@ export function FeatureSlider() {
                     })}
                 </div>
 
-                {/* Boutons d'Action Médias / Navigation */}
                 <div className={`absolute inset-0 pointer-events-none z-30 transition-all duration-300 ${openIndex === null ? 'opacity-0 translate-y-4 pointer-events-none' : 'opacity-100 translate-y-0'
                     }`}>
-                    {/* Bouton Précédent */}
+                    {/* Bouton Précédent */ /*}
                     <button
                         onClick={handlePrev}
                         className="absolute left-4 top-1/2 -translate-y-[150%] pointer-events-auto flex items-center justify-center w-9 h-9 border-0 cursor-pointer rounded-full bg-white/20 hover:bg-white/30 backdrop-blur transition-all duration-200 text-white"
@@ -450,7 +445,6 @@ export function FeatureSlider() {
                         <FiChevronUp className="w-[22px] h-[22px] stroke-[3]" />
                     </button>
 
-                    {/* Bouton Suivant */}
                     <button
                         onClick={handleNext}
                         className="absolute left-4 top-1/2 translate-y-[50%] pointer-events-auto flex items-center justify-center w-9 h-9 border-0 cursor-pointer rounded-full bg-white/20 hover:bg-white/30 backdrop-blur transition-all duration-200 text-white"
@@ -459,7 +453,6 @@ export function FeatureSlider() {
                         <FiChevronDown className="w-[22px] h-[22px] stroke-[3]" />
                     </button>
 
-                    {/* Bouton Quitter */}
                     <button
                         onClick={handleExit}
                         className="absolute right-4 top-4 pointer-events-auto flex items-center justify-center w-9 h-9 border-0 cursor-pointer rounded-full bg-white/20 hover:bg-white/30 backdrop-blur transition-all duration-200 text-white"
@@ -471,7 +464,7 @@ export function FeatureSlider() {
 
             </section>
 
-            {/* Bouton Profil Créateur Flottant (Bear-link) */}
+            {/* Bouton Profil Créateur Flottant (Bear-link) */ /*}
             <a
                 aria-label="Follow Jhey on X"
                 className="w-12 h-12 grid place-items-center opacity-80 hover:opacity-100 transition-opacity text-white z-50 bg-white/5 hover:bg-white/10 rounded-full border border-white/10"
@@ -499,7 +492,7 @@ export function FeatureSlider() {
 
 /**
  *  MzaCarousel de la galerie photos
- */
+ */ /*
 
 
 interface CarouselItem {
@@ -872,7 +865,6 @@ export function MzaCarousel() {
         stateRef.current.hovering = false;
       }}
     >
-      {/* Viewport */}
       <div
         ref={viewportRef}
         className="relative outline-none overflow-hidden h-full cursor-grab active:cursor-grabbing"
@@ -882,7 +874,7 @@ export function MzaCarousel() {
         onPointerCancel={onDragEnd}
         onMouseMove={onTilt}
       >
-        {/* Track 3D */}
+        {/* Track 3D */ /*}
         <div
           className="relative overflow-hidden"
           style={{
@@ -908,7 +900,7 @@ export function MzaCarousel() {
                   marginLeft: "calc(var(--mzaC-slideW,min(880px,90vw)) / -2)",
                 }}
               >
-                {/* Card Element */}
+                {/* Card Element */ /*}
                 <div
                   className={`mzaCard relative w-full h-full rounded-inherit overflow-hidden bg-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-[4px] backdrop-saturate-[120%] transform translate-z-0 transition-shadow duration-500 ${
                     isActive
@@ -916,7 +908,6 @@ export function MzaCarousel() {
                       : ""
                   }`}
                 >
-                  {/* Background Image Effect */}
                   <div
                     className={`absolute -inset-[2%] bg-cover bg-center scale-[1.18] -translate-z-[60px] transition-all duration-700 ease-[cubic-bezier(0.2,0.7,0,1)] ${
                       isActive
@@ -928,10 +919,8 @@ export function MzaCarousel() {
                       transform: `translate3d(var(--mzaParBgX, 0px), var(--mzaParBgY, 0px), -60px) scale(1.18)`,
                     }}
                   />
-                  {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/45 to-black/25 z-[1]" />
 
-                  {/* Header Content */}
                   <header
                     className="absolute inset-[20px_auto_auto_20px] z-[2] transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0,1)]"
                     style={{
@@ -946,7 +935,6 @@ export function MzaCarousel() {
                     </p>
                   </header>
 
-                  {/* Description Text */}
                   <p
                     className="absolute inset-[auto_20px_85px_20px] z-[2] max-w-[60ch] bg-black/40 p-5 backdrop-blur-[5px] rounded-[10px] text-zinc-300 text-[0.9rem] leading-relaxed max-md:max-w-[45%] line-clamp-3"
                     style={{
@@ -956,7 +944,6 @@ export function MzaCarousel() {
                     {item.text}
                   </p>
 
-                  {/* Action Button */}
                   <footer
                     className="absolute inset-[auto_auto_18px_18px] z-[2]"
                     style={{
@@ -974,7 +961,6 @@ export function MzaCarousel() {
         </div>
       </div>
 
-      {/* Navigation Controls (React Icons) */}
       <div className="absolute inset-0 flex items-center justify-between pointer-events-none px-4">
         <button
           onClick={() => goTo(mod(stateRef.current.index - 1, n))}
@@ -992,7 +978,7 @@ export function MzaCarousel() {
         </button>
       </div>
 
-      {/* Pagination Dots */}
+      {/* Pagination Dots */ /*}
       <div className="absolute left-0 right-0 bottom-[max(27px,env(safe-area-inset-bottom))] flex gap-2.5 justify-center items-center">
         {CAROUSEL_DATA.map((_, i) => (
           <button
@@ -1010,7 +996,7 @@ export function MzaCarousel() {
         ))}
       </div>
 
-      {/* Global Progress Bar */}
+      {/* Global Progress Bar */ /*}
       <div className="fixed left-0 right-0 bottom-0 h-1 bg-white/10 z-[9999] overflow-hidden">
         <span
           ref={progressBarRef}
@@ -1021,3 +1007,4 @@ export function MzaCarousel() {
   );
 }
 
+ */

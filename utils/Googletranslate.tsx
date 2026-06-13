@@ -1,6 +1,7 @@
 ("use client");
 
 import { useState } from "react";
+import Script from "next/script";
 import { motion, AnimatePresence } from "framer-motion";
 //ICONS
 import { FaGlobeAfrica } from "react-icons/fa";
@@ -72,9 +73,6 @@ export default function LangueDropdown() {
   );
 }
 
-("use client");
-
-import Script from "next/script";
 
 const GoogleTranslate = () => {
   return (
@@ -152,4 +150,3 @@ const GoogleTranslate = () => {
   );
 };
 
-export default GoogleTranslate;

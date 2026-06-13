@@ -115,16 +115,6 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
-  },
-  exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } },
-};
-
 export default function BlogActualiteSection() {
   const [selectedCategory, setSelectedCategory] = useState("Tous");
 
@@ -149,7 +139,6 @@ export default function BlogActualiteSection() {
               Analyses, conseils et décryptages pour propulser votre business.
             </p>
           </div>
-
         </div>
 
         {/* Barre de Filtres Dynamique */}
@@ -179,16 +168,22 @@ export default function BlogActualiteSection() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
-            {filteredArticles.map((article) => (
+            {filteredArticles.map((article, index) => (
               <motion.div
                 key={article.id}
                 layout
-                variants={itemVariants}
                 initial="hidden"
                 animate="visible"
                 exit="exit"
                 whileHover={{ y: -6 }}
                 className="flex"
+                // Le secret est ici : le "as const" force TypeScript à lire "spring" comme le type exact attendu
+                transition={{
+                  type: "spring" as const,
+                  stiffness: 100,
+                  damping: 15,
+                  delay: index * 0.1,
+                }}
               >
                 <Card
                   variant="borderless"
@@ -263,7 +258,6 @@ export default function BlogActualiteSection() {
             ))}
           </AnimatePresence>
         </motion.div>
-
       </div>
     </section>
   );

@@ -1,8 +1,8 @@
-"use client";
+/* "use client";
 
 import { useEffect, useState } from "react";
 
-import { Product } from "@/types/product";
+import { Product } from "../types/galerie";
 
 export default function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -15,3 +15,4 @@ export default function useProducts() {
 
   return products;
 }
+ */

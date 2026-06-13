@@ -6,7 +6,7 @@ import Image from "next/image";
 import LangueToggle from "./LangueToggle";
 import { usePathname } from "next/navigation";
 import ContactForm from "./ContactForm";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 type NavItem = {
   href?: string;
@@ -23,8 +23,7 @@ export default function NavBar() {
   const [open, setOpen] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpenPanel, setIsOpenPanel] = useState(false);
-  
-  const menuRef = useRef(null);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const togglePanel = () => setIsOpenPanel((prev) => !prev);
 
@@ -41,22 +40,21 @@ export default function NavBar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-useEffect(() => {
-  const handleClickOutside = (event: MouseEvent): void => {
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-      setOpen(false);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpen(null); // Changed from false to null to match your state type
+      }
+    };
+
+    if (open) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
-  };
 
-  if (open) {
-    document.addEventListener("mousedown", handleClickOutside);
-  }
-
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [open]);
-  
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open]);
 
   const linkNav: NavItem[] = [
     { href: "/", label: "Acueil" },
@@ -80,7 +78,7 @@ useEffect(() => {
     },
   ];
 
-  const dropdownVariants = {
+  const dropdownVariants: Variants = {
     hidden: { opacity: 0, y: 15, scale: 0.95 },
     visible: {
       opacity: 1,
@@ -102,7 +100,7 @@ useEffect(() => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, x: -10 },
     visible: { opacity: 1, x: 0 },
   };

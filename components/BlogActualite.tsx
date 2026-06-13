@@ -17,7 +17,7 @@ interface Article {
   date: string;
   description: string;
   avatar: string;
-  image: string; // Ajout du champ pour la photo de couverture
+  image: string;
 }
 
 const CATEGORY_COLORS = {
@@ -38,7 +38,7 @@ const DISPLAYED_ARTICLES: Article[] = [
       "Découvrez les leviers indispensables pour attirer plus de clients qualifiés sans exploser votre budget publicitaire.",
     avatar: "https://api.dicebear.com/7.x/miniavs/svg?seed=marketing",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80", // Bureau / Analytics
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&auto=format&fit=crop&q=80",
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ const DISPLAYED_ARTICLES: Article[] = [
       "De l'idée initiale à la signature des premiers contrats, évitez les pièges classiques des jeunes entrepreneurs.",
     avatar: "https://api.dicebear.com/7.x/miniavs/svg?seed=business",
     image:
-      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=80", // Équipe / Réunion d'affaires
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&auto=format&fit=crop&q=80",
   },
   {
     id: 3,
@@ -60,28 +60,11 @@ const DISPLAYED_ARTICLES: Article[] = [
       "Le branding ne se résume pas à un logo. Analyse de l'impact psychologique des choix graphiques sur vos ventes.",
     avatar: "https://api.dicebear.com/7.x/miniavs/svg?seed=brand",
     image:
-      "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600&auto=format&fit=crop&q=80", // Design / Palette de couleurs
+      "https://images.unsplash.com/photo-1513542789411-b6a5d4f31634?w=600&auto=format&fit=crop&q=80",
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants = {
-  hidden: { y: 30, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: { type: "spring", stiffness: 100, damping: 15 },
-  },
-};
-
-export default function BlogActualiteSection({  }) {
+export default function BlogActualiteSection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8 intersection-observer-context">
       <div className="max-w-6xl mx-auto">
@@ -119,19 +102,22 @@ export default function BlogActualiteSection({  }) {
         </div>
 
         {/* Grille de cartes de Blog */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {DISPLAYED_ARTICLES.map((article) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {DISPLAYED_ARTICLES.map((article, index) => (
             <motion.div
               key={article.id}
-              variants={itemVariants}
+              layout
+              initial={{ y: 30, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
               whileHover={{ y: -8 }}
-              className="flex"
+              // Le secret est ici : le "as const" force TypeScript à lire "spring" comme le type exact attendu
+              transition={{
+                type: "spring" as const,
+                stiffness: 100,
+                damping: 15,
+                delay: index * 0.1,
+              }}
             >
               <Card
                 variant="borderless"
@@ -143,7 +129,6 @@ export default function BlogActualiteSection({  }) {
                     flexDirection: "column",
                   },
                 }}
-                // Intégration de l'image Unsplash en haut de la carte
                 cover={
                   <div className="overflow-hidden h-48 w-full relative">
                     <img
@@ -206,7 +191,7 @@ export default function BlogActualiteSection({  }) {
               </Card>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* Bouton "Voir plus" - Version Mobile */}
         <div className="mt-10 block md:hidden text-center">
@@ -217,7 +202,6 @@ export default function BlogActualiteSection({  }) {
                 block
                 size="large"
                 icon={<ArrowRightOutlined />}
-                iconPlacement="end"
                 className="bg-blue-600 hover:bg-blue-500 border-none h-12 rounded-xl font-medium"
               >
                 Voir tout le blog
@@ -229,12 +213,6 @@ export default function BlogActualiteSection({  }) {
     </section>
   );
 }
-
-
-
-
-
-
 
 /**
  * BLOG/ACTUALITES

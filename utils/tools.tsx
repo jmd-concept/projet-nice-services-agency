@@ -5,7 +5,7 @@
  */
 
 //2
-
+/*
 import { useState, useEffect, useLayoutEffect, useRef, } from "react";
 import { gsap } from 'gsap';
 import { GoArrowUpRight } from 'react-icons/go';
@@ -63,7 +63,7 @@ const NavBAr2: React.FC = () => {
 
 
 /** Card de navigation */
-
+/*
 export interface NavSubLink {
     label: string;
     ariaLabel: string;
@@ -268,7 +268,6 @@ const CardNav: React.FC<CardNavProps> = ({
                     </div>
 
                     <div className="logo-container">
-                        {/* Si Next.js, vous pouvez utiliser <Image /> d'un point de vue opti, sinon le tag img natif fonctionne */}
                         <img src={logo} alt={logoAlt} className="logo" />
                     </div>
 
@@ -325,6 +324,7 @@ export default CardNav;
 
 
 // Définition de l'interface pour TypeScript
+/*
 interface AlbumItem {
     id: number;
     image: string;
@@ -358,7 +358,6 @@ export default function Gallery() {
                     </h1>
                 </div>
 
-                {/* Grille des photos */}
 <div className={`max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6 rounded-xl backdrop-blur-sm transition-colors duration-300 dark:bg-black/80 bg-gray-200`}
 >
 {ALBUMS.map((item) => (
@@ -375,10 +374,9 @@ sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
 className="object-cover object-center pointer-events-none transition-transform duration-[1.2s] ease-out group-hover:scale-110"
 />
 
-{/* Overlay sombre au survol */}
 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out" />
 
-{/* Textes au survol */}
+{/* Textes au survol *//*}
 <div className="absolute inset-0 flex flex-col justify-end p-5 text-white transform translate-y-3 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out pointer-events-none">
     {item.categorie && (
         <span className="text-xs uppercase tracking-widest text-pink-300 font-semibold mb-1">
@@ -418,7 +416,6 @@ return (
 onClick={onClose} // Ferme la modale en cliquant n'importe où sur le fond noir
 className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/90 backdrop-blur-md z-50 animate-fade-in cursor-zoom-out"
 >
-{/* Bouton Fermer (optionnel mais recommandé pour l'accessibilité) */}
 <button
     onClick={onClose}
     className="absolute top-6 right-6 text-white text-3xl font-light hover:text-pink-300 transition-colors z-50"
@@ -426,7 +423,6 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
     ✕
 </button>
 
-{/* Conteneur de l'image pour lui donner une taille maximale en grand écran */}
 <div className="relative w-full h-full max-w-4xl max-h-[80vh]">
     <Image
         src={item.image}
@@ -437,7 +433,7 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
         priority
     />
 
-    {/* Petit titre sous la photo zoomée */}
+    {/* Petit titre sous la photo zoomée *//*}
 <div className="absolute -bottom-10 left-0 right-0 text-center text-white">
 <p className="text-lg font-serif">{item.titre}</p>
 <p className="text-xs text-gray-400 uppercase tracking-widest">{item.categorie}</p>
@@ -452,7 +448,7 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
 {/* 
     Gallery Grid 2
 
- */ }
+ */ /*}
 
 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
     {galleryItems.map((item) => (
@@ -460,7 +456,6 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
             key={item.id}
             className="group relative bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/20 border border-white/10"
         >
-            {/* Image Container */}
             <div className="relative aspect-square overflow-hidden">
                 <Image
                     src={item.imageUrl}
@@ -470,30 +465,28 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
                     unoptimized
                 />
 
-                {/* Gradient Overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-t ${item.color} opacity-0 group-hover:opacity-20 transition-opacity duration-300`}></div>
 
-                {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
                     <button className="bg-white/20 backdrop-blur-sm rounded-full p-4 transform transition-transform hover:scale-110 hover:bg-white/30">
                         <FaPlay className="text-white text-2xl ml-0.5" />
                     </button>
                 </div>
 
-                {/* Badge */}
+                {/* Badge *//*}
                 {item.badge && (
                     <div className="absolute top-3 left-3 bg-black/60 backdrop-blur-sm rounded-full px-3 py-1">
                         <span className="text-xs font-semibold text-white">{item.badge}</span>
                     </div>
                 )}
 
-                {/* Spotify Icon */}
+                {/* Spotify Icon *//*}
                 <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <FaSpotify className="text-green-500 text-sm" />
                 </div>
             </div>
 
-            {/* Content */}
+            {/* Content *//*}
             <div className="p-4">
                 <div className="mb-3">
                     <h3 className="text-lg font-bold text-white mb-1 line-clamp-1">
@@ -527,7 +520,6 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
                     </div>
                 </div>
 
-                {/* Featured Tag for DisNEp */}
                 {item.featured && (
                     <div className="mt-3 flex items-center gap-2">
                         <div className="h-1 flex-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
@@ -539,7 +531,7 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
     ))}
 </div>
 
-{/* Footer Note */ }
+{/* Footer Note */ /*}
 <div className="text-center mt-12 pt-8 border-t border-white/10">
     <p className="text-gray-500 text-sm">
         ✨ {galleryItems.length} titres disponibles • Mis à jour quotidiennement
@@ -551,3 +543,5 @@ className="fixed inset-0 flex p-4 md:p-12 items-center justify-center bg-black/9
         <span className="text-xs text-gray-600">#Encanto</span>
     </div>
 </div>
+
+*/
