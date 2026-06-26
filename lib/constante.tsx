@@ -16,7 +16,7 @@ export const teamData: TeamMember[] = [
   },
   {
     id: "2",
-    image: "/equipe/image-3.JPG",
+    image: "/equipe/image-1.JPG",
     nom: "Anny",
     domaine: "UI/UX Designer",
     reseaux: ["https://facebook.com", "https://linkedin.com"],
@@ -28,8 +28,110 @@ export const teamData: TeamMember[] = [
     domaine: "Responsable Studio & Vidéo",
     reseaux: ["https://facebook.com", "https://linkedin.com"],
   },
+  {
+    id: "4",
+    image: "/equipe/image-3.JPG",
+    nom: "Amos",
+    domaine: "Responsable Studio & Vidéo",
+    reseaux: ["https://facebook.com", "https://linkedin.com"],
+  },
+  {
+    id: "5",
+    image: "/equipe/image-4.JPG",
+    nom: "David",
+    domaine: "Responsable Studio & Vidéo",
+    reseaux: ["https://facebook.com", "https://linkedin.com"],
+  },
+  {
+    id: "6",
+    image: "/equipe/image-2.JPG",
+    nom: "Sam",
+    domaine: "Responsable Studio & Vidéo",
+    reseaux: ["https://facebook.com", "https://linkedin.com"],
+  },
 ];
 
+/**
+ *  SERVICE
+ */
+// Service data type
+export type Service = {
+  id: string;
+  title: string;
+  description: string;
+  fullDescription: string;
+  imageUrl: string;
+  route: string;
+  tags?: string[];
+};
+
+// Sample services - replace with your data
+export const servicesData: Service[] = [
+  {
+    id: "photo-video",
+    title: "Photographie & Vidéographie",
+    description:
+      "Production visuelle haute définition pour sublimer votre image de marque.",
+    fullDescription:
+      "Nous capturons l'essence de votre entreprise à travers des reportages photo professionnels, des vidéos corporatives percutantes, des spots publicitaires et la couverture médiatique de vos événements. Une qualité visuelle irréprochable pour marquer les esprits.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=600&h=400",
+    route: "/services/photo-video",
+    tags: ["Shooting", "Tournage", "Montage"],
+  },
+  {
+    id: "marketing-digital",
+    title: "Marketing Digital",
+    description:
+      "Campagnes de performance pour maximiser votre visibilité et votre ROI.",
+    fullDescription:
+      "Développez votre présence en ligne grâce à des stratégies sur-mesure : gestion professionnelle de vos réseaux sociaux (Community Management), campagnes publicitaires ciblées (Facebook, Instagram, Google Ads), et acquisition de clients qualifiés.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600&h=400",
+    route: "/services/marketing-digital",
+    tags: ["Social Media", "Publicité", "Acquisition"],
+  },
+  {
+    id: "infographie-branding",
+    title: "Infographie & Identité Visuelle",
+    description:
+      "Conception graphique sur-mesure pour affirmer votre identité unique.",
+    fullDescription:
+      "Création complète de votre univers de marque : logos professionnels, affiches publicitaires, flyers, chartes graphiques complètes et supports de communication physique ou numérique. Un branding fort qui reflète vos valeurs.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600&h=400",
+    route: "/services/infographie-branding",
+    tags: ["Logos", "Flyers", "Branding"],
+  },
+  {
+    id: "web-apps",
+    title: "Création de Sites Web, Applications & Bases de données",
+    description:
+      "Solutions digitales innovantes pour numériser votre secteur d'activité.",
+    fullDescription:
+      "Développement de sites vitrines modernes, de plateformes e-commerce robustes, d'applications sur-mesure et d'architectures de bases de données sécurisées. Des outils performants, scalables et adaptés aux réalités de votre entreprise.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600&h=400",
+    route: "/services/web-apps",
+    tags: ["Web", "Applications", "Database"],
+  },
+  {
+    id: "accompagnement",
+    title: "Accompagnement des entreprises et entrepreneurs",
+    description: "Conseil stratégique et formation pour propulser vos projets.",
+    fullDescription:
+      "Nous vous guidons pas à pas dans la transformation digitale de votre business. De la définition de vos objectifs à l'implémentation d'outils numériques performants, en passant par la formation de vos équipes pour un succès durable.",
+    imageUrl:
+      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=400",
+    route: "/services/accompagnement",
+    tags: ["Conseil", "Formation", "Stratégie"],
+  },
+];
+
+/**
+ *
+ *  GALERIE
+ */
 export interface MasonryItem {
   id: string;
   img: string;
@@ -281,8 +383,6 @@ export const galleryItems = [
   },
 ];
 
-
-
 // 1. Définition de la structure d'un avis client
 export interface Avis {
   id: number;
@@ -300,27 +400,33 @@ export const listeAvis: Avis[] = [
     id: 1,
     nom: "Sophie Martin",
     role: "Cliente fidèle",
-    commentaire: "Le service de JMD RestoConnect a totalement transformé nos soirées. Les commandes sont fluides et les notifications.",
+    commentaire:
+      "Le service de JMD RestoConnect a totalement transformé nos soirées. Les commandes sont fluides et les notifications.",
     note: 5,
-    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
-    date: "Il y a 2 jours"
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150&q=80",
+    date: "Il y a 2 jours",
   },
   {
     id: 2,
     nom: "Jean-Pierre Dupond",
     role: "Directeur de Resto Pro",
-    commentaire: "Une application robuste et intuitive. L'interface est claire, l'équipe technique est très réactive",
+    commentaire:
+      "Une application robuste et intuitive. L'interface est claire, l'équipe technique est très réactive",
     note: 4,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
-    date: "Il y a 1 semaine"
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&h=150&q=80",
+    date: "Il y a 1 semaine",
   },
   {
     id: 3,
     nom: "Amélie Le Gall",
     role: "Épicurienne",
-    commentaire: "Superbe expérience utilisateur ! C'est rapide, beau et super pratique pour commander ou réserver.",
+    commentaire:
+      "Superbe expérience utilisateur ! C'est rapide, beau et super pratique pour commander ou réserver.",
     note: 5,
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
-    date: "Il y a 2 semaines"
-  }
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&h=150&q=80",
+    date: "Il y a 2 semaines",
+  },
 ];

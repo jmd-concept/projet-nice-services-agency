@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { teamData, TeamMember } from "@/lib/constante";
 import { motion, Variants, AnimatePresence } from "framer-motion";
-//ICONS
-import { ArrowRightOutlined } from "@ant-design/icons";
 
 interface TeamCardProps {
   member: TeamMember;
@@ -35,7 +33,7 @@ const cardFadeUp: Variants = {
   },
 };
 
-export default function Team() {
+export default function TeamComponent() {
   return (
     <section className="py-24 bg-zinc-50/50 dark:bg-zinc-950/40 px-4 sm:px-6 lg:px-8 intersection-observer-context">
       <div className="max-w-6xl mx-auto">
@@ -53,7 +51,7 @@ export default function Team() {
           </p>
         </div>
 
-        {/* Grille animée limitée à 3 membres maximum */}
+        {/* Grille animée */}
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -61,21 +59,10 @@ export default function Team() {
           variants={containerVariants}
           className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
         >
-          {teamData.slice(0, 3).map((member) => (
+          {teamData.map((member) => (
             <TeamCard key={member.id} member={member} />
           ))}
         </motion.div>
-
-        {/* Bouton pour voir le reste de l'équipe */}
-        <div className="flex items-center justify-center mt-12 lg:mt-16">
-          <Link
-            href="/team"
-            className="flex gap-4 items-center text-md bg-amber-500 hover:bg-amber-600 text-white border-none shadow-md h-12 rounded-lg font-medium px-8 py-4 transition-colors duration-300"
-          >
-            <span>Voir toute l'équipe</span>
-            <ArrowRightOutlined />
-          </Link>
-        </div>
       </div>
     </section>
   );
@@ -126,10 +113,10 @@ export const TeamCard = ({ member }: TeamCardProps) => {
             </div>
           </div>
 
-          {/* Liens réseaux sociaux */}
+          {/* Liens réseaux sociaux (Icônes SVG natives et épurées) */}
           <ul className="flex justify-center space-x-4 text-zinc-400 dark:text-zinc-500 mt-5 pt-4 border-t border-zinc-100 dark:border-zinc-800/80 w-full">
             <li>
-              <a
+              <Link
                 href={reseaux[0] || "#"}
                 aria-label="Facebook"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors block p-1"
@@ -139,10 +126,10 @@ export const TeamCard = ({ member }: TeamCardProps) => {
                 <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                   <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href={reseaux[1] || "#"}
                 aria-label="LinkedIn"
                 className="hover:text-sky-700 dark:hover:text-sky-400 transition-colors block p-1"
@@ -152,12 +139,13 @@ export const TeamCard = ({ member }: TeamCardProps) => {
                 <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
       </motion.div>
 
+      {/* Rendu géré par AnimatePresence pour une fermeture animée propre */}
       <AnimatePresence>
         {isOpen && (
           <TeamCardOpen member={member} onClose={() => setIsOpen(false)} />
@@ -186,6 +174,7 @@ export const TeamCardOpen = ({ member, onClose }: TeamCardOpenProps) => {
         onClick={(e) => e.stopPropagation()}
         className="w-full max-w-sm bg-white dark:bg-zinc-900 rounded-3xl p-6 relative shadow-2xl border border-zinc-100 dark:border-zinc-800"
       >
+        {/* Bouton de fermeture */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors focus:outline-none p-1 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800"
@@ -207,6 +196,7 @@ export const TeamCardOpen = ({ member, onClose }: TeamCardOpenProps) => {
           </svg>
         </button>
 
+        {/* Profil Modale */}
         <div className="relative w-48 h-48 mx-auto overflow-hidden rounded-full border-4 border-amber-500/10 mt-4">
           <Image
             src={image}
@@ -232,7 +222,7 @@ export const TeamCardOpen = ({ member, onClose }: TeamCardOpenProps) => {
 
           <ul className="flex justify-center space-x-5 text-zinc-400 dark:text-zinc-500 border-t pt-5 border-zinc-100 dark:border-zinc-800/80 mt-6 w-full">
             <li>
-              <a
+              <Link
                 href={reseaux[0] || "#"}
                 aria-label="Facebook"
                 className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors block p-1 text-lg"
@@ -242,10 +232,10 @@ export const TeamCardOpen = ({ member, onClose }: TeamCardOpenProps) => {
                 <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                   <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.8c4.56-.93 8-4.96 8-9.8z" />
                 </svg>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
+              <Link
                 href={reseaux[1] || "#"}
                 aria-label="LinkedIn"
                 className="hover:text-sky-700 dark:hover:text-sky-400 transition-colors block p-1 text-lg"
@@ -255,7 +245,7 @@ export const TeamCardOpen = ({ member, onClose }: TeamCardOpenProps) => {
                 <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                   <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                 </svg>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

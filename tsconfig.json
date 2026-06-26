@@ -39,6 +39,9 @@
       "@/context/*": [
         "./context/*"
       ],
+      "@/hooks/*": [
+        "./hooks/*"
+      ],
       "@/lib/*": [
         "./lib/*"
       ],
@@ -65,7 +68,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
-    "**/*.mts"
+    "**/*.mts",
+    "app/services/infographie/page.js"
   ],
   "exclude": [
     "node_modules"

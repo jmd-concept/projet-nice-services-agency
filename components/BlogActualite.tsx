@@ -173,7 +173,7 @@ export default function BlogActualiteSection() {
                       className="bg-gray-100 border border-gray-200"
                     />
                     <span className="text-xs font-semibold text-gray-700">
-                      Équipe N.Service Agency
+                      Équipe N.Services Agency
                     </span>
                   </div>
 

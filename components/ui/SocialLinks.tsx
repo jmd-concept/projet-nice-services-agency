@@ -12,22 +12,22 @@ const socials = [
   {
     name: "WhatsApp",
     label: "Suivez-nous sur WhatsApp",
-    href: "https://wa.me/243824912430", // À remplacer par vos liens réels
+    href: "https://wa.me/243824912430",
     icon: FaWhatsapp,
   },
   {
     name: "Facebook",
     label: "Suivez-nous sur Facebook",
-    href: "https://facebook.com/votre_page", // À remplacer par vos liens réels
+    href: "https://www.facebook.com/share/1BNgro2iai/?mibextid=wwXIfr",
     icon: FiFacebook,
   },
   {
     name: "Instagram",
     label: "Suivez-nous sur Instagram",
-    href: "https://instagram.com/votre_compte",
+    href: "https://www.instagram.com/nice_pictures_photography?igsh=MTZkMTFobGY5ejlrbw%3D%3D&utm_source=qr",
     icon: FiInstagram,
   },
-  {
+  /*  {
     name: "X (Twitter)",
     label: "Suivez-nous sur X",
     href: "https://twitter.com/votre_compte",
@@ -38,7 +38,7 @@ const socials = [
     label: "Abonnez-vous sur YouTube",
     href: "https://youtube.com/votre_chaine",
     icon: FiYoutube,
-  },
+  }, */
 ];
 
 

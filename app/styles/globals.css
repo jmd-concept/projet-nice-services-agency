@@ -1,82 +1,105 @@
-/**/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- POLICES --- */
+    --font-family: "Futura Md BT", "Garete Book", "Garamond", sans-serif;
+  
+    /* --- COULEURS --- */
+    --color-primary: #F2A922;
+    /* Bleu électrique */
+    --color-secondary: #000000;
+    /* Vrai Noir */
+    --color-neutral-light: #D3D3D3;
+    /* Gris clair */
+  
+    /* --- THÈME PAR DÉFAUT (MODE CLAIR) --- */
+    --background: var(--color-neutral-light);
+    --foreground: var(--color-secondary);
+  
+    /* --- TAILLES DEMANDÉES --- */
+    --size-title: 24pt;
+    /* Config de base Titre */
+    --size-body: 12pt;
+    /* Config de base Texte */
 }
 
-@theme inline {
+/* --- CONFIGURATION DU THÈME TAILWIND v4 --- */
+@theme {
+  /* Liaison de la police sans-serif de Tailwind */
+  --font-sans: var(--font-family);
+
+  /* Couleurs utilitaires (ex: bg-principal, text-secondaire) */
+  --color-principal: var(--color-primary);
+  --color-secondaire: var(--color-secondary);
+  --color-gris-clair: var(--color-neutral-light);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Animation transférée depuis l'ancien tailwind.config */
+  --animate-spin-slow: spin 3s linear infinite;
 }
 
+/* --- MODE SOMBRE AUTOMATIQUE --- */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #121212;
+      --foreground: var(--color-neutral-light);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-
-@layer base {
-  :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
-    h1 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h2 {
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h3 {
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h4 {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    p {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-
-    label {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    button {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    input {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-  }
-}
-
+/* --- APPLICATION GLOBALE --- */
 html {
-  font-size: var(--font-size);
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+}
+
+/* --- COUCHE DE BASE POUR LES BALISES HTML --- */
+@layer base {
+
+  /* Correction du sélecteur : Sécurité pour s'appliquer UNIQUEMENT 
+          si l'élément lui-même n'a pas de classe de taille 'text-' 
+        */
+    h1:not([class*="text-"]),
+    h2:not([class*="text-"]),
+    h3:not([class*="text-"]),
+    h4:not([class*="text-"]),
+    p:not([class*="text-"]),
+    a:not([class*="text-"]),
+    span:not([class*="text-"]),
+    label:not([class*="text-"]),
+    button:not([class*="text-"]),
+    input:not([class*="text-"]) {
+      line-height: 1.5;
+    }
+
+                h1:not([class*="text-"]) {
+                  font-size: var(--size-title);
+                  font-weight: 700;
+    }
+
+                h2:not([class*="text-"]) {
+                  font-size: calc(var(--size-title) * 0.85);
+                  font-weight: 600;
+    }
+
+                h3:not([class*="text-"]) {
+                  font-size: calc(var(--size-title) * 0.75);
+                  font-weight: 600;
+    }
+
+                h4:not([class*="text-"]) {
+                  font-size: var(--size-body);
+                  font-weight: 600;
+    }
+
+                p:not([class*="text-"]),
+                span:not([class*="text-"]),
+                label:not([class*="text-"]),
+                button:not([class*="text-"]),
+                input:not([class*="text-"]) {
+                  font-size: var(--size-body);
+                  font-weight: 400;
+}
 }

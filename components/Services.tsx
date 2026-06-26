@@ -1,187 +1,232 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { CgWebsite } from "react-icons/cg";
-import { FiLayout, FiSmartphone, FiGlobe, FiBox } from "react-icons/fi";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
+import { servicesData, Service } from "@/lib/constante";
 
-const services = [
-  {
-    icon: FiLayout,
-    titre: "Photographie & Vidéographie",
-    description:
-      "Crafting intuitive interfaces that guide users effortlessly through digital journeys.",
-    image:
-      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?auto=format&fit=crop&q=80&w=600&h=400",
-  },
-  {
-    icon: FiSmartphone,
-    titre: "Marketing Digital",
-    description:
-      "Responsive experiences that feel native on every device and screen size.",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600&h=400",
-  },
-  {
-    icon: FiGlobe,
-    titre: "Infographie & Identité Visuelle",
-    description: "Logos, affiches, Flyers, Chartes graphiques, Branding",
-    image:
-      "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=600&h=400",
-  },
-  {
-    icon: CgWebsite,
-    titre: "Création de Sites Web, application & Base de données",
-    description: "Solutions digital pour numériser vos secteur d'activité",
-    image:
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=600&h=400",
-  },
-  {
-    icon: FiBox,
-    titre: "Accompagnement des entreprises et entrepreneurs",
-    description:
-      "Immersive interactions that add depth and character to your brand.",
-    image:
-      "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600&h=400",
-  },
-];
-
-export const Services = () => {
-  const containerRef = useRef(null);
+export default function Services() {
+  const [selectedService, setSelectedService] = useState<Service>(
+    servicesData[0],
+  );
 
   return (
     <section
-      ref={containerRef}
       id="services"
-      className="py-25 px-6 bg-neutral-950 relative overflow-hidden"
+      className="w-full bg-black text-white py-20 px-4 md:px-8 lg:px-16 overflow-hidden"
     >
-      {/* Dynamic Background */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.03),transparent_50%)] pointer-events-none" />
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-        className="absolute -top-[20%] -right-[10%] w-[800px] h-[800px] border border-white/5 rounded-full pointer-events-none opacity-50 dashed-border"
-        style={{ borderStyle: "dashed" }}
-      />
-      <motion.div
-        animate={{ rotate: -360 }}
-        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-        className="absolute top-[20%] right-[10%] w-[600px] h-[600px] border border-white/5 rounded-full pointer-events-none opacity-30"
-      />
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-sm font-bold tracking-wider text-orange-500 uppercase bg-orange-500/10 px-4 py-1.5 rounded-full border border-orange-500/20"
+          >
+            Notre Expertise
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-3xl md:text-4xl lg:text-5xl font-black mt-4 uppercase tracking-tight"
+          >
+            Des services pour <span className="text-orange-500">propulser</span>{" "}
+            votre vision
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            whileInView={{ opacity: 1, scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="w-24 h-1 bg-orange-500 mx-auto mt-4 rounded-full"
+          />
+        </div>
 
-      <div className="container mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="mb-28 grid md:grid-cols-2 gap-16 items-end">
-          <div>
-            <div className="flex items-center gap-6 mb-8">
-              <div className="flex items-baseline gap-3">
-                <span className="text-sm font-mono uppercase tracking-[0.3em] text-neutral-400">
-                  Professionalisme
-                </span>
-              </div>
-              <div className="h-px w-32 bg-gradient-to-r from-white/30 to-transparent" />
-            </div>
-            <motion.h2
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="ml-6 text-4xl md:text-7xl font-medium tracking-tighter leading-none"
-            >
-              Nos{" "}
-              <span className="italic font-serif text-neutral-500">
-                Services
-              </span>
-            </motion.h2>
+        {/* Main two-column layout */}
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+          {/* LEFT: Large preview area */}
+          <div className="lg:w-1/2 w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={selectedService.id}
+                initial={{ opacity: 0, x: -30, rotateY: -10 }}
+                animate={{ opacity: 1, x: 0, rotateY: 0 }}
+                exit={{ opacity: 0, x: 30, rotateY: 10 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="bg-gray-950 rounded-2xl border border-gray-800 overflow-hidden shadow-2xl"
+              >
+                {/* Image with overlay gradient */}
+                <div className="relative h-80 w-full overflow-hidden bg-gray-900">
+                  <img
+                    src={selectedService.imageUrl}
+                    alt={selectedService.title}
+                    className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950 via-gray-950/40 to-transparent" />
+                  <div className="absolute bottom-0 left-0 p-6">
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {selectedService.tags?.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-xs font-bold px-3 py-1 rounded-full bg-orange-500/10 text-orange-500 border border-orange-500/20"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-black text-white drop-shadow-lg uppercase tracking-tight">
+                      {selectedService.title}
+                    </h3>
+                  </div>
+                </div>
+
+                {/* Description and CTA */}
+                <div className="p-6 md:p-8 bg-gray-950">
+                  <p className="text-gray-300 leading-relaxed mb-8 text-base md:text-lg">
+                    {selectedService.fullDescription}
+                  </p>
+                  <div className="flex items-center justify-between gap-4">
+                    <Link
+                      href={selectedService.route}
+                      className="group inline-flex items-center gap-2 px-6 py-3 bg-orange-500 hover:bg-white text-white hover:text-black font-bold rounded-xl transition-all duration-300 shadow-lg shadow-orange-500/10 border border-transparent hover:border-orange-500"
+                    >
+                      <span>Découvrir le service</span>
+                      <svg
+                        className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2.5}
+                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                      </svg>
+                    </Link>
+                    <div className="text-xs font-mono text-gray-600 uppercase tracking-widest hidden sm:block">
+                      // {selectedService.id}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="md:pl-12 border-l border-white/10 relative"
-          >
-            <div className="absolute top-0 left-[-1px] h-12 w-[1px] bg-gradient-to-b from-white to-transparent" />
-            <p className="text-xl md:text-2xl font-light text-neutral-300 leading-relaxed">
-              Solutions pour tout vos projets digital, marketing...
-            </p>
-          </motion.div>
+          {/* RIGHT: Vertical scrollable list of services */}
+          <div className="lg:w-1/2 w-full">
+            <div className="flex flex-col space-y-4 max-h-[700px] overflow-y-auto pr-2 custom-scroll">
+              {servicesData.map((service, idx) => (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: idx * 0.05 }}
+                  whileHover={{ scale: 1.01, x: 4 }}
+                  onClick={() => setSelectedService(service)}
+                  className={`cursor-pointer rounded-xl transition-all duration-300 ${
+                    selectedService.id === service.id
+                      ? "bg-orange-500/10 border-l-4 border-orange-500 shadow-lg shadow-orange-500/5"
+                      : "bg-gray-950/40 border border-gray-900 hover:bg-gray-900/40 hover:border-gray-800"
+                  }`}
+                >
+                  <div className="flex p-4 gap-4 items-center">
+                    {/* Thumbnail */}
+                    <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden bg-gray-900 border border-gray-800">
+                      <img
+                        src={service.imageUrl}
+                        alt={service.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <h4 className="font-black text-base md:text-lg text-white truncate uppercase tracking-tight">
+                          {service.title}
+                        </h4>
+                        {selectedService.id === service.id && (
+                          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-orange-500 text-black flex-shrink-0">
+                            Actif
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-gray-400 text-sm mt-1 line-clamp-2">
+                        {service.description}
+                      </p>
+                      <div className="flex items-center justify-between mt-2">
+                        <div className="flex gap-1">
+                          {service.tags?.slice(0, 2).map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[10px] font-bold px-2 py-0.5 rounded bg-gray-900 text-gray-400 border border-gray-800"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <Link
+                          href={service.route}
+                          onClick={(e) => e.stopPropagation()}
+                          className="text-orange-500 text-xs font-bold hover:text-white transition-colors flex items-center gap-1"
+                        >
+                          Détails →
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-24 group/list">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.8 }}
-              className={`
-                  relative 
-                  ${index % 2 === 1 ? "lg:mt-20" : ""} 
-                  transition-all duration-500 ease-out
-                  hover:!opacity-100 group-hover/list:opacity-20
-                `}
+        {/* Bottom link */}
+        <div className="text-center mt-12 pt-8 border-t border-gray-900">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 text-gray-400 hover:text-orange-500 font-bold tracking-wide transition-colors uppercase text-sm"
+          >
+            <span>Voir tout notre catalogue</span>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              {/* Editorial Decorative Corners */}
-              <div className="absolute -top-5 -left-5 w-3 h-3 border-t border-l border-white/20 transition-all duration-500 group-hover:w-[calc(100%+3rem)] group-hover:h-[calc(100%+3rem)] group-hover:border-white/10 pointer-events-none" />
-              <div className="absolute -bottom-6 -right-5 w-3 h-3 border-b border-r border-white/20 transition-all duration-500 group-hover:w-[calc(100%+3rem)] group-hover:h-[calc(100%+3rem)] group-hover:border-white/10 pointer-events-none" />
-
-              <ServiceCard service={service} index={index} />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Ajustement pour que le bouton s'aligne proprement en fin de grille */}
-        <div className="flex items-center justify-center lg:mt-12">
-          <a
-            href="#contact"
-            className="rounded-md bg-amber-500 px-8 py-4 text-md font-semibold text-white shadow-xs hover:bg-amber-50 hover:text-gray-600 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-900"
-          >
-            Discuter de votre projet
-          </a>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
+              />
+            </svg>
+          </Link>
         </div>
       </div>
+
+      <style jsx>{`
+        .custom-scroll::-webkit-scrollbar {
+          width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+          background: #0a0a0a;
+          border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+          background: #ea580c; /* Orange corporate (orange-600) */
+          border-radius: 10px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+          background: #f97316; /* orange-500 */
+        }
+      `}</style>
     </section>
   );
-};
-
-export default Services;
-
-const ServiceCard = ({ service, index }: { service: any; index: number }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.5 }}
-      whileHover={{ y: -10 }}
-      className="group overflow-hidden rounded-2xl bg-white/5 border border-white/5 hover:border-white/20 hover:bg-amber-50/10 transition-all duration-500 backdrop-blur-sm"
-    >
-      {/* Image Wrapper avec effet zoom au survol */}
-      <div className="w-full h-48 overflow-hidden relative">
-        <img
-          src={service.image}
-          alt={service.titre}
-          className="w-full h-full object-cover opacity-80 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent opacity-80" />
-      </div>
-
-      <div className="p-8">
-        <div className="mb-6 w-12 h-12 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-amber-500 group-hover:text-black transition-colors duration-500">
-          <service.icon className="w-6 h-6" />
-        </div>
-
-        <h3 className="text-xl font-medium mb-4 tracking-tight text-white">
-          {service.titre}
-        </h3>
-        <p className="text-neutral-400 font-light leading-relaxed group-hover:text-neutral-300 transition-colors">
-          {service.description}
-        </p>
-      </div>
-    </motion.div>
-  );
-};
+}

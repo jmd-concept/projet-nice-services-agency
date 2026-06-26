@@ -6,14 +6,11 @@ const nextConfig: NextConfig = {
   compress: true,
   reactStrictMode: true,
   transpilePackages: ["some-package"],
+  allowedDevOrigins: ["192.168.56.1"],
 
   images: {
     unoptimized: !isProd, // false en producción para usar el optimizador de imágenes de Next.js
     remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-      },
       {
         protocol: "https",
         hostname: "lh3.googleusercontent.com",
@@ -26,6 +23,11 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "picsum.photos",
+      },
+      {
+        protocol: "https",
+        hostname: "i.pinimg.com",
+        pathname: "/**",
       },
     ],
   },

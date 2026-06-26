@@ -1,16 +1,17 @@
+
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
 
-export default function ServiceLayout({
+export default function ContactLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return(
+  return (
     <div>
       <NavBar />
-            {children}
-            <Footer/>
+      {children}
+      <Footer/>
     </div>
-  )
+  );
 }

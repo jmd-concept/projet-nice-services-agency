@@ -13,7 +13,6 @@ import BlogActualite from "@/components/BlogActualite";
 import AvisClient from "@/components/AvisClient";
 import ContactForm from "@/components/ContactForm";
 import Footer from "../components/Footer";
-import { Projects } from "@/components/Projets";
 import { detecteConnexionInternet } from "@/utils/utils";
 
 const Preloader = () => (
@@ -108,8 +107,6 @@ export default function Home() {
           <Hero />
           <About />
           <Services />
-
-          {/* <Projects /> */}
           <Gallerie />
           <AvisClient />
           <Team />

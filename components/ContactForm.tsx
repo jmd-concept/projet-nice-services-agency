@@ -5,6 +5,7 @@ import { Form, Input, Button, message } from "antd";
 import { motion } from "framer-motion";
 import SocialLinks from "./ui/SocialLinks";
 //ICONS
+import { FiX } from "react-icons/fi";
 import { FaEye } from "react-icons/fa";
 
 const { TextArea } = Input;
@@ -57,6 +58,15 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
   return (
     <div className="max-auto w-full lg:max-w-7xl mx-auto space-y-8 py-16">
       {/* En-tête du Formulaire */}
+      <div className="float-end">
+        <button
+          onClick={togglePanel}
+          className="hover:bg-amber-500 p-2 rounded-md"
+        >
+          <FiX size={24} />
+        </button>
+      </div>
+
       <div className="flex justify-center items-center pb-2 border-b border-zinc-100 dark:border-zinc-800/80">
         <div className="text-center">
           <h2 className="text-3xl font-black text-zinc-900 dark:text-white tracking-tight">
@@ -174,7 +184,7 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.7946973873496!2d15.3255146!3d-4.374828!2m3!1f0!2f0!3f0!3m2!1i1020!1i768!4f13.1!3m3!1m2!1s0x1a6a369fa8943899%3A0x6b405f6eec3b5e4c!2sRighini%2C%20Kinshasa!5e0!3m2!1sfr!2scd!4v1710000000000!5m2!1sfr!2scd"
               width="100%"
               height="100%"
-              className="rounded-xl min-h-60 grayscale hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100"
+              className="rounded-xl min-h-76 grayscale hover:grayscale-0 transition-all duration-700 opacity-90 group-hover:opacity-100"
               style={{ border: 0 }}
               allowFullScreen={false}
               loading="lazy"
@@ -210,7 +220,6 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
     </div>
   );
 }
-
 
 /**
  * "use client";
@@ -302,7 +311,7 @@ export default function ContactForm({ togglePanel }: ContactFormProps) {
       </div>
 
       <div className="flex gap-8">
-      {/* Formulaire Ant Design *//*}
+      {/* Formulaire Ant Design */ /*}
       <Form
         form={form}
         layout="vertical"

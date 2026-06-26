@@ -1,25 +1,24 @@
-import Script from "next/script";
-import { Geist, Geist_Mono } from "next/font/google";
-//import ThemeProvider from "../context/useThemeProvider";
-
+//import Script from "next/script";
+import { Inter } from "next/font/google";
 import "./styles/index.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata = {
   //metadataBase: new URL('https://n-services.business'),
 
-  title: "N-services Agency",
-  description: "",
-  keywords: [""],
+  title: "N-Services Agency",
+  description: "Nice Services Agency",
+  keywords: [
+    "photographie",
+    "vidéographie",
+    "marketing digital",
+    "création site web",
+    "prise de parole en publique",
+  ],
 
   authors: [
     {
@@ -28,8 +27,8 @@ export const metadata = {
     },
   ],
 
-  creator: "JMD Concept / JMD Group",
-  publisher: "JMD Group",
+  creator: "JMD Group/ JMD Concept",
+  publisher: "JMD Group / JMD Concept",
   category: "business",
 
   openGraph: {
@@ -119,16 +118,9 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  //const isProd = process.env.NODE_ENV === "production";
-
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="fr"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="fr" className={inter.variable}>
       {/*  {isProd && (
         <>
           <Script
@@ -145,8 +137,7 @@ export default function RootLayout({
           </Script>
         </>
       )} */}
-
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
